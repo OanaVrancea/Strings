@@ -1,0 +1,68 @@
+Vrancea Oana Roxana, 322 CD
+
+Task1
+M-am folosit de al si bl pentru a retine caracterele din plaintext si key.
+Am folosit xor pe registrele eax si ebx, iar rezultatul l-am pus in edx.
+Am parcurs de la ultimul caracter spre primul deoarece am folosit loop,
+care scadea valoarea din ecx automat.
+
+Task2
+Am verificat mai intai daca caracterul este litera sau nu.
+Daca este litera "adaug" valoarea cheii pentru a ii schimba
+codul ascii (a se transforma in alta litera).Daca in urma acestei
+operatii caracterul nu mai este litera, scad din valoarea acestuia
+valoarea 26(numarul de litere din alfabet) pentru a obtine iar o 
+litera.
+
+Task3
+In acest task mai intai am construit cheia extinsa.Aceasta contine
+si caracterele care nu sunt litere pe pozitiile care erau initial
+si in mesajul care trebuia criptat.Am construit cheia in felul
+urmator: am parcurs toate caracterele din mesaj. Daca erau litere
+parcurgeam cheia ciclic si in loc de litera din mesaj puneam
+litera corespunzatoare din cheie. Daca caracterul nu era litera,
+il scriam si continuam sa imi deplasez pozita in mesaj.
+Dupa care am inceput sa parcurg iar mesajul. Pentru litere 
+am folosit urmatorul rationament: pun in al litera de la indexul
+corespunzator din cheia extinsa si scad din ea 39 (numerotarea
+incepe de la 0, deci litera A nu trebuie sa modifice nimic).
+In urma acestei scaderi, operatia "add bl,al" imi va respecta
+conditia de deplasare din cerinta. Daca cumva depasesc 'z'sau 'Z'
+atunci voi scadea 26 pana obtin o litera mare sau litera mica.
+Repet procedeul pentru toate literele mesajului.
+
+Task4
+
+In acest task parcurg toate caracterele din textul mare
+si le compar cu prima litera din textul mic. Daca acestea
+conincid voi continua sa le compar pana difera. Am 2 optiuni
+aici:
+- daca difera si subsirul a ajuns la valoarea '0', adica
+s-a terminat, inseamna ca am gasit primul subsir, sar la afisare
+si afisez valoarea lui ecx(iteratorul) din care scad edx pentru ca
+am parcurs tot subsirul, deci sunt cu edx pozitii in fata.
+- daca difera si subsirul nu s-a terminat inseamna ca nu am gasit
+prima aparitie a subsirului in sir si cu "sub edx, edx" voi
+muta caracterul de comparat cu primul caracter al subsirului.
+Afisare2 este afisarea in caz ca subsirul nu a fost gasit.
+Deoarece se pleaca cu numaratoarea de la 0, iar eu trebuie sa intorc
+lungimea sirului intial + 1, valoarea trebuie incrementata cu 3(
+am facut asta cu operatiile add ecx,2 si add eax,1).
+
+Task5
+
+In acest task ideea a fost sa grupez bitii cate 4.
+Cum se grupeaza de la sfarsit spre inceput am calculat
+cati "biti" am in "plus" . Pot fi 3 variane:
+-1 bit in plus : 0,1
+-2 biti : 00,01,10,11
+-3 biti: 000,001,010,011,100,101,110,111
+Am analizat toate combinatiile posibile si
+am pus valoarea la inceputul lui edx.
+
+Dupa care am grupat bitii cate 4 si am analizat toate 
+cazurile.La cele de sus se adauga 1000,1001,1010,1011,
+1100,1101,1110,1111. Daca sirul de 4 biti ia una dintre 
+valorile enumerate, ea are o valoarea unica pe care
+am adugat-o in continuare in sirul edx.
+
